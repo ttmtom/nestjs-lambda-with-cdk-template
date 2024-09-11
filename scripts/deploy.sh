@@ -14,11 +14,17 @@ while true; do
   break
 done
 
-rm -rf dist
-npm run build-lambda
+ROOT=$(pwd)
 
 rm -rf cdk.out/* && \
 npm run build
+
+cd app
+npm install
+npm run build
+npm prune --production
+
+cd $ROOT
 
 if [ "$IS_PIPELINE" -eq 1 ]; then
   cdk deploy --require-approval=never

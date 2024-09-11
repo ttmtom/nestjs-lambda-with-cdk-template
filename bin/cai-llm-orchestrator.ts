@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import * as dotenv from 'dotenv';
-dotenv.config({ path: `./envs/${process.env.ENVIRONMENT_CODE}.env` });
+dotenv.config({ path: `envs/${process.env.ENVIRONMENT_CODE}.env` });
 
 import * as cdk from 'aws-cdk-lib';
 // import 'source-map-support/register';
@@ -9,7 +9,7 @@ import { CaiLLMOrchestratorStack } from '../lib/cai-llm-orchestrator-stack';
 const app = new cdk.App();
 new CaiLLMOrchestratorStack(
   app,
-  `${process.env.ENVIRONMENT}-cai-orchestrator-stack`,
+  `${process.env.ENVIRONMENT}-cai-orchestrator-stack-ms`,
   {
     env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: 'ap-southeast-1' },
     /* If you don't specify 'env', this stack will be environment-agnostic.

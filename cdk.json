@@ -1,5 +1,5 @@
 {
-  "app": "npx ts-node --prefer-ts-exts src/infra/bin/cai-llm-orchestrator.ts",
+  "app": "npx ts-node --prefer-ts-exts bin/cai-llm-orchestrator.ts",
   "watch": {
     "include": [
       "**"

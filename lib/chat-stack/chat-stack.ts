@@ -1,5 +1,4 @@
-import { Construct } from 'constructs';
-import { Code, Runtime } from 'aws-cdk-lib/aws-lambda';
+import { Code, LayerVersion, Runtime } from 'aws-cdk-lib/aws-lambda';
 import { Function } from 'aws-cdk-lib/aws-lambda';
 import { DcpPolicyStatement } from '../common/iam/DcpPolicyStatement';
 import {
@@ -10,13 +9,14 @@ import {
   ServicePrincipal,
 } from 'aws-cdk-lib/aws-iam';
 import * as path from 'path';
+import { Construct } from 'constructs';
 
 export class ChatStack extends Construct {
   constructor(scope: Construct, id: string) {
     super(scope, id);
 
     const chatRole = new Role(this, 'LambdaHandlerRole', {
-      roleName: `${process.env.ENVIRONMENT}-chat-stack-role`,
+      roleName: `dcp-svc-chat-stack-role-${process.env.ENVIRONMENT}`,
       assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
       permissionsBoundary: ManagedPolicy.fromManagedPolicyName(
         scope,
@@ -38,10 +38,10 @@ export class ChatStack extends Construct {
       roles: [chatRole],
     });
 
-    const apiNestHandlerFunction = new Function(this, 'ApiNestHandler', {
-      code: Code.fromAsset(path.basename(__dirname) + '/dist'),
+    new Function(this, 'ApiNestHandler', {
+      code: Code.fromAsset(path.join(__dirname, '../../app')),
       runtime: Runtime.NODEJS_20_X,
-      handler: 'main.handler',
+      handler: 'dist/main.handler',
       environment: {},
       role: chatRole,
     });
