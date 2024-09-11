@@ -16,8 +16,10 @@ done
 
 ROOT=$(pwd)
 
+cd infra
 rm -rf cdk.out/* && \
 npm run build
+cd $ROOT
 
 cd app
 npm install
@@ -25,7 +27,7 @@ npm run build
 npm prune --production
 
 cd $ROOT
-
+cd infra
 if [ "$IS_PIPELINE" -eq 1 ]; then
   cdk deploy --require-approval=never
 else

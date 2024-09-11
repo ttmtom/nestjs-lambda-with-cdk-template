@@ -39,7 +39,7 @@ export class ChatStack extends Construct {
     });
 
     new Function(this, 'ApiNestHandler', {
-      code: Code.fromAsset(path.join(__dirname, '../../app')),
+      code: Code.fromAsset(path.join(__dirname, '../../../')),
       runtime: Runtime.NODEJS_20_X,
       handler: 'dist/main.handler',
       environment: {},

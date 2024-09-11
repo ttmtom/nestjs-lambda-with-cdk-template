@@ -8,6 +8,7 @@
     "allowSyntheticDefaultImports": true,
     "target": "ES2021",
     "sourceMap": true,
+    "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
@@ -17,10 +18,5 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "esModuleInterop": true
-  },
-  "exclude": [
-    "node_modules",
-    "cdk.out",
-    "app"
-  ]
+  }
 }
