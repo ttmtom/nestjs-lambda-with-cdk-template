@@ -20,9 +20,11 @@
     "inlineSources": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
+    "esModuleInterop": true,
     "typeRoots": [
       "./node_modules/@types"
-    ]
+    ],
+    "outDir": "build"
   },
   "exclude": [
     "node_modules",
