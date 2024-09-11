@@ -28,10 +28,6 @@ cd infra
 npm install
 npm run build
 
-if [ "$IS_PIPELINE" -eq 1 ]; then
-  cdk deploy --require-approval=never
-else
-  npx cdk deploy
-fi
+npx cdk deploy
 
 echo "Finished at $(date +"%T")"

@@ -4,6 +4,8 @@ import { Body, Controller, Post } from '@nestjs/common';
 export class ChatController {
   @Post('message')
   async message(@Body() body: any) {
-    return 'message';
+    return {
+      message: 'Message received',
+    };
   }
 }
