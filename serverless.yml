@@ -1,0 +1,27 @@
+service: genai-orchestrator
+
+plugins:
+  - serverless-offline
+  - serverless-offline-watcher
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+
+functions:
+  main:
+    handler: dist/main.handler
+    events:
+      - http:
+          method: ANY
+          path: /
+      - http:
+          method: ANY
+          path: '{proxy+}'
+
+custom:
+  serverless-offline-watcher:
+    - path:
+        - dist/**/**
+      # this prints for example "received change event for src/path/to/file.ts"
+      command: "echo received $WATCHER_EVENT_TYPE event for $WATCHER_EVENT_PATH"
