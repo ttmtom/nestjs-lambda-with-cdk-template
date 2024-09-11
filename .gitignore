@@ -1,8 +1,9 @@
 # compiled output
-*/dist
-*/node_modules
-*/build
-*/cdk.out
+dist
+node_modules
+build
+cdk.out
+.serverless
 
 # Logs
 logs
